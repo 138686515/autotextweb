@@ -46,12 +46,23 @@ jobs:
           name: allure-report
           path: reports/allure-report
           retention-days: 7
+
+      - name: 部署报告到GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./reports/allure-report
+          publish_branch: gh-pages
+          force_orphan: true
+
       - name: 发送钉钉通知
+        if: always()  # 无论测试结果如何，都发送通知
         run: |
           pip install requests
           cat > send_dingtalk.py << 'EOF'
           import os
           import requests
+          import json
           from datetime import datetime
 
           # 获取GitHub环境变量
@@ -59,18 +70,68 @@ jobs:
           run_id = os.environ['GITHUB_RUN_ID']
           workflow = os.environ['GITHUB_WORKFLOW']
           run_url = f"https://github.com/{repo}/actions/runs/{run_id}"
+          job_status = "${{ job.status }}"
 
           # 获取钉钉Webhook
           webhook_url = os.environ['DINGTALK_WEBHOOK']
 
+          # 解析Allure结果数据，获取测试用例统计信息
+          def get_test_statistics():
+              allure_results_dir = "reports/allure"
+              stats = {
+                  "total": 0,
+                  "passed": 0,
+                  "failed": 0,
+                  "broken": 0,
+                  "skipped": 0
+              }
+              
+              try:
+                  import os
+                  for filename in os.listdir(allure_results_dir):
+                      if filename.endswith('.json'):
+                          file_path = os.path.join(allure_results_dir, filename)
+                          with open(file_path, 'r', encoding='utf-8') as f:
+                              data = json.load(f)
+                          if isinstance(data, dict) and data.get('uuid') and data.get('status'):
+                              stats["total"] += 1
+                              status = data["status"]
+                              if status == "passed":
+                                  stats["passed"] += 1
+                              elif status == "failed":
+                                  stats["failed"] += 1
+                              elif status == "broken":
+                                  stats["broken"] += 1
+                              elif status == "skipped":
+                                  stats["skipped"] += 1
+              except Exception as e:
+                  print(f"获取测试统计信息失败: {str(e)}")
+              
+              return stats
+
+          # 获取测试用例统计信息
+          stats = get_test_statistics()
+
+          # 构建GitHub Pages报告URL
+          username = repo.split('/')[0]
+          repo_name = repo.split('/')[1]
+          report_url = f"https://{username}.github.io/{repo_name}/"
+
           # 构建通知内容
+          status_emoji = "✅" if job_status == "success" else "❌"
           message = f"""
           【自动化接口测试报告】
-          - 测试时间：{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
-          - 工作流名称：{workflow}
-          - 运行状态：成功
-          - 运行详情：{run_url}
-          - 报告下载：https://github.com/{repo}/actions/runs/{run_id}/artifacts
+          {status_emoji} 测试状态: {job_status}
+          📅 测试时间: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
+          📋 工作流名称: {workflow}
+          🔗 运行详情: {run_url}
+          📊 测试结果统计:
+            - 总用例数: {stats['total']}
+            - 通过: {stats['passed']}
+            - 失败: {stats['failed']}
+            - 错误: {stats['broken']}
+            - 跳过: {stats['skipped']}
+          🌐 在线报告: {report_url}
           """
 
           # 发送钉钉消息
