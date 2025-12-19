@@ -1,0 +1,6 @@
+[32m2025-12-19 11:13:15[0m | [1mINFO    [0m | [36mconftest[0m:[36mtest_case_setup[0m:[36m33[0m - [1m=== 开始测试用例: test_get_photo ===[0m
+[32m2025-12-19 11:13:15[0m | [1mINFO    [0m | [36mtests.test_sample_api[0m:[36mtest_get_photo[0m:[36m237[0m - [1m开始测试获取单个照片[0m
+[32m2025-12-19 11:13:15[0m | [1mINFO    [0m | [36mapi.request_handler[0m:[36mget[0m:[36m39[0m - [1m发送GET请求: https://jsonplaceholder.typicode.com/photos/1, params: None[0m
+[32m2025-12-19 11:13:15[0m | [1mINFO    [0m | [36mapi.request_handler[0m:[36mget[0m:[36m45[0m - [1mGET请求成功: https://jsonplaceholder.typicode.com/photos/1, 响应: {'albumId': 1, 'id': 1, 'title': 'accusamus beatae ad facilis cum similique qui sunt', 'url': 'https://via.placeholder.com/600/92c952', 'thumbnailUrl': 'https://via.placeholder.com/150/92c952'}[0m
+[32m2025-12-19 11:13:15[0m | [1mINFO    [0m | [36mtests.test_sample_api[0m:[36mtest_get_photo[0m:[36m243[0m - [1m测试获取单个照片成功[0m
+[32m2025-12-19 11:13:15[0m | [1mINFO    [0m | [36mconftest[0m:[36mtest_case_setup[0m:[36m37[0m - [1m=== 结束测试用例: test_get_photo ===[0m

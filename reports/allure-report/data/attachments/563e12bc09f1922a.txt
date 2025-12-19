@@ -1,0 +1,6 @@
+[32m2025-12-19 11:09:01[0m | [1mINFO    [0m | [36mconftest[0m:[36mtest_case_setup[0m:[36m33[0m - [1m=== 开始测试用例: test_create_photo ===[0m
+[32m2025-12-19 11:09:01[0m | [1mINFO    [0m | [36mtests.test_sample_api[0m:[36mtest_create_photo[0m:[36m249[0m - [1m开始测试创建新照片[0m
+[32m2025-12-19 11:09:01[0m | [1mINFO    [0m | [36mapi.request_handler[0m:[36mpost[0m:[36m61[0m - [1m发送POST请求: https://jsonplaceholder.typicode.com/photos, json: {'albumId': 1, 'title': 'Test Photo', 'url': 'https://example.com/photo.jpg', 'thumbnailUrl': 'https://example.com/thumbnail.jpg'}, data: None[0m
+[32m2025-12-19 11:09:01[0m | [1mINFO    [0m | [36mapi.request_handler[0m:[36mpost[0m:[36m67[0m - [1mPOST请求成功: https://jsonplaceholder.typicode.com/photos, 响应: {'albumId': 1, 'title': 'Test Photo', 'url': 'https://example.com/photo.jpg', 'thumbnailUrl': 'https://example.com/thumbnail.jpg', 'id': 5001}[0m
+[32m2025-12-19 11:09:01[0m | [1mINFO    [0m | [36mtests.test_sample_api[0m:[36mtest_create_photo[0m:[36m254[0m - [1m测试创建新照片成功[0m
+[32m2025-12-19 11:09:01[0m | [1mINFO    [0m | [36mconftest[0m:[36mtest_case_setup[0m:[36m37[0m - [1m=== 结束测试用例: test_create_photo ===[0m

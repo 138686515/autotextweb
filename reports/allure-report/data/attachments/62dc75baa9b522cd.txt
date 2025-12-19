@@ -1,0 +1,6 @@
+[32m2025-12-19 11:08:58[0m | [1mINFO    [0m | [36mconftest[0m:[36mtest_case_setup[0m:[36m33[0m - [1m=== 开始测试用例: test_delete_post ===[0m
+[32m2025-12-19 11:08:58[0m | [1mINFO    [0m | [36mtests.test_sample_api[0m:[36mtest_delete_post[0m:[36m101[0m - [1m开始测试删除帖子[0m
+[32m2025-12-19 11:08:58[0m | [1mINFO    [0m | [36mapi.request_handler[0m:[36mdelete[0m:[36m102[0m - [1m发送DELETE请求: https://jsonplaceholder.typicode.com/posts/1[0m
+[32m2025-12-19 11:08:58[0m | [1mINFO    [0m | [36mapi.request_handler[0m:[36mdelete[0m:[36m112[0m - [1mDELETE请求成功: https://jsonplaceholder.typicode.com/posts/1, 响应: {}[0m
+[32m2025-12-19 11:08:58[0m | [1mINFO    [0m | [36mtests.test_sample_api[0m:[36mtest_delete_post[0m:[36m107[0m - [1m测试删除帖子成功[0m
+[32m2025-12-19 11:08:58[0m | [1mINFO    [0m | [36mconftest[0m:[36mtest_case_setup[0m:[36m37[0m - [1m=== 结束测试用例: test_delete_post ===[0m

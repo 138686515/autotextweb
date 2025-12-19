@@ -1,0 +1,6 @@
+[32m2025-12-19 11:08:58[0m | [1mINFO    [0m | [36mconftest[0m:[36mtest_case_setup[0m:[36m33[0m - [1m=== 开始测试用例: test_update_post ===[0m
+[32m2025-12-19 11:08:58[0m | [1mINFO    [0m | [36mtests.test_sample_api[0m:[36mtest_update_post[0m:[36m88[0m - [1m开始测试更新帖子[0m
+[32m2025-12-19 11:08:58[0m | [1mINFO    [0m | [36mapi.request_handler[0m:[36mput[0m:[36m82[0m - [1m发送PUT请求: https://jsonplaceholder.typicode.com/posts/1, json: {'title': 'Updated Test Post', 'body': 'This is an updated test post content.', 'userId': 1}[0m
+[32m2025-12-19 11:08:58[0m | [1mINFO    [0m | [36mapi.request_handler[0m:[36mput[0m:[36m88[0m - [1mPUT请求成功: https://jsonplaceholder.typicode.com/posts/1, 响应: {'title': 'Updated Test Post', 'body': 'This is an updated test post content.', 'userId': 1, 'id': 1}[0m
+[32m2025-12-19 11:08:58[0m | [1mINFO    [0m | [36mtests.test_sample_api[0m:[36mtest_update_post[0m:[36m95[0m - [1m测试更新帖子成功[0m
+[32m2025-12-19 11:08:58[0m | [1mINFO    [0m | [36mconftest[0m:[36mtest_case_setup[0m:[36m37[0m - [1m=== 结束测试用例: test_update_post ===[0m

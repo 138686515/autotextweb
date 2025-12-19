@@ -1,0 +1,6 @@
+[32m2025-12-19 11:13:14[0m | [1mINFO    [0m | [36mconftest[0m:[36mtest_case_setup[0m:[36m33[0m - [1m=== 开始测试用例: test_create_album ===[0m
+[32m2025-12-19 11:13:14[0m | [1mINFO    [0m | [36mtests.test_sample_api[0m:[36mtest_create_album[0m:[36m196[0m - [1m开始测试创建新相册[0m
+[32m2025-12-19 11:13:14[0m | [1mINFO    [0m | [36mapi.request_handler[0m:[36mpost[0m:[36m61[0m - [1m发送POST请求: https://jsonplaceholder.typicode.com/albums, json: {'title': 'Test Album', 'userId': 1}, data: None[0m
+[32m2025-12-19 11:13:14[0m | [1mINFO    [0m | [36mapi.request_handler[0m:[36mpost[0m:[36m67[0m - [1mPOST请求成功: https://jsonplaceholder.typicode.com/albums, 响应: {'title': 'Test Album', 'userId': 1, 'id': 101}[0m
+[32m2025-12-19 11:13:14[0m | [1mINFO    [0m | [36mtests.test_sample_api[0m:[36mtest_create_album[0m:[36m201[0m - [1m测试创建新相册成功[0m
+[32m2025-12-19 11:13:14[0m | [1mINFO    [0m | [36mconftest[0m:[36mtest_case_setup[0m:[36m37[0m - [1m=== 结束测试用例: test_create_album ===[0m

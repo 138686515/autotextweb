@@ -1,0 +1,6 @@
+[32m2025-12-19 11:13:12[0m | [1mINFO    [0m | [36mconftest[0m:[36mtest_case_setup[0m:[36m33[0m - [1m=== 开始测试用例: test_create_post ===[0m
+[32m2025-12-19 11:13:12[0m | [1mINFO    [0m | [36mtests.test_sample_api[0m:[36mtest_create_post[0m:[36m77[0m - [1m开始测试创建新帖子[0m
+[32m2025-12-19 11:13:12[0m | [1mINFO    [0m | [36mapi.request_handler[0m:[36mpost[0m:[36m61[0m - [1m发送POST请求: https://jsonplaceholder.typicode.com/posts, json: {'title': 'Test Post', 'body': 'This is a test post content.', 'userId': 1}, data: None[0m
+[32m2025-12-19 11:13:12[0m | [1mINFO    [0m | [36mapi.request_handler[0m:[36mpost[0m:[36m67[0m - [1mPOST请求成功: https://jsonplaceholder.typicode.com/posts, 响应: {'title': 'Test Post', 'body': 'This is a test post content.', 'userId': 1, 'id': 101}[0m
+[32m2025-12-19 11:13:12[0m | [1mINFO    [0m | [36mtests.test_sample_api[0m:[36mtest_create_post[0m:[36m82[0m - [1m测试创建新帖子成功[0m
+[32m2025-12-19 11:13:12[0m | [1mINFO    [0m | [36mconftest[0m:[36mtest_case_setup[0m:[36m37[0m - [1m=== 结束测试用例: test_create_post ===[0m
