@@ -7,6 +7,12 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+# 添加权限配置，解决GitHub Pages部署403错误
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -117,11 +123,18 @@ jobs:
           repo_name = repo.split('/')[1]
           report_url = f"https://{username}.github.io/{repo_name}/"
 
+          # 基于测试用例结果确定状态，而不是工作流状态
+          if stats["failed"] > 0 or stats["broken"] > 0:
+              status = "failure"
+              status_emoji = "❌"
+          else:
+              status = "success"
+              status_emoji = "✅"
+          
           # 构建通知内容
-          status_emoji = "✅" if job_status == "success" else "❌"
           message = f"""
           【自动化接口测试报告】
-          {status_emoji} 测试状态: {job_status}
+          {status_emoji} 测试状态: {status}
           📅 测试时间: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
           📋 工作流名称: {workflow}
           🔗 运行详情: {run_url}
