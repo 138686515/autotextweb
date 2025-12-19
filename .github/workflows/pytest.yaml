@@ -46,3 +46,46 @@ jobs:
           name: allure-report
           path: reports/allure-report
           retention-days: 7
+      - name: 发送钉钉通知
+        run: |
+          pip install requests
+          cat > send_dingtalk.py << 'EOF'
+          import os
+          import requests
+          from datetime import datetime
+
+          # 获取GitHub环境变量
+          repo = os.environ['GITHUB_REPOSITORY']
+          run_id = os.environ['GITHUB_RUN_ID']
+          workflow = os.environ['GITHUB_WORKFLOW']
+          run_url = f"https://github.com/{repo}/actions/runs/{run_id}"
+
+          # 获取钉钉Webhook
+          webhook_url = os.environ['DINGTALK_WEBHOOK']
+
+          # 构建通知内容
+          message = f"""
+          【自动化接口测试报告】
+          - 测试时间：{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
+          - 工作流名称：{workflow}
+          - 运行状态：成功
+          - 运行详情：{run_url}
+          - 报告下载：https://github.com/{repo}/actions/runs/{run_id}/artifacts
+          """
+
+          # 发送钉钉消息
+          payload = {
+              "msgtype": "text",
+              "text": {
+                  "content": f"自动测试 {message}"
+              }
+          }
+
+          response = requests.post(webhook_url, json=payload)
+          response.raise_for_status()
+          print("钉钉通知发送成功")
+          EOF
+
+          python send_dingtalk.py
+        env:
+          DINGTALK_WEBHOOK: ${{ secrets.DINGTALK_WEBHOOK }}
