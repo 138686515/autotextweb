@@ -1,0 +1,6 @@
+[32m2025-12-19 05:25:00[0m | [1mINFO    [0m | [36mconftest[0m:[36mtest_case_setup[0m:[36m33[0m - [1m=== 开始测试用例: test_create_todo ===[0m
+[32m2025-12-19 05:25:00[0m | [1mINFO    [0m | [36mtests.test_sample_api[0m:[36mtest_create_todo[0m:[36m158[0m - [1m开始测试创建新待办事项[0m
+[32m2025-12-19 05:25:00[0m | [1mINFO    [0m | [36mapi.request_handler[0m:[36mpost[0m:[36m61[0m - [1m发送POST请求: https://jsonplaceholder.typicode.com/todos, json: {'userId': 1, 'title': 'Test Todo', 'completed': False}, data: None[0m
+[32m2025-12-19 05:25:00[0m | [1mINFO    [0m | [36mapi.request_handler[0m:[36mpost[0m:[36m67[0m - [1mPOST请求成功: https://jsonplaceholder.typicode.com/todos, 响应: {'userId': 1, 'title': 'Test Todo', 'completed': False, 'id': 201}[0m
+[32m2025-12-19 05:25:00[0m | [1mINFO    [0m | [36mtests.test_sample_api[0m:[36mtest_create_todo[0m:[36m163[0m - [1m测试创建新待办事项成功[0m
+[32m2025-12-19 05:25:00[0m | [1mINFO    [0m | [36mconftest[0m:[36mtest_case_setup[0m:[36m37[0m - [1m=== 结束测试用例: test_create_todo ===[0m
