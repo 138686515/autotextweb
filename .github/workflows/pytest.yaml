@@ -63,8 +63,8 @@ jobs:
 
       - name: 部署到Netlify
         run: |
-          # 设置NETLIFY_SITE_ID和NETLIFY_AUTH_TOKEN环境变量
-          netlify deploy --dir=reports/allure-report --prod --site=$NETLIFY_SITE_ID --auth=$NETLIFY_AUTH_TOKEN
+          # 直接使用netlify deploy命令，指定site和auth参数，避免交互式登录
+          netlify deploy --dir=reports/allure-report --prod --site=${{ secrets.NETLIFY_SITE_ID }} --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} --no-clipboard
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
