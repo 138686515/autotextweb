@@ -53,6 +53,22 @@ jobs:
           path: reports/allure-report
           retention-days: 7
 
+      - name: 安装 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: 安装 Netlify CLI
+        run: npm install -g netlify-cli
+
+      - name: 部署到Netlify
+        run: |
+          # 设置NETLIFY_SITE_ID和NETLIFY_AUTH_TOKEN环境变量
+          netlify deploy --dir=reports/allure-report --prod --site=$NETLIFY_SITE_ID --auth=$NETLIFY_AUTH_TOKEN
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+
       - name: 部署报告到GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -60,6 +76,7 @@ jobs:
           publish_dir: ./reports/allure-report
           publish_branch: gh-pages
           force_orphan: true
+        continue-on-error: true
 
       - name: 发送钉钉通知
         if: always()  # 无论测试结果如何，都发送通知
@@ -118,11 +135,17 @@ jobs:
           # 获取测试用例统计信息
           stats = get_test_statistics()
 
-          # 构建GitHub Pages报告URL
+          # 构建报告URL
           username = repo.split('/')[0]
           repo_name = repo.split('/')[1]
-          report_url = f"https://{username}.github.io/{repo_name}/"
-
+          
+          # GitHub Pages报告URL
+          github_pages_url = f"https://{username}.github.io/{repo_name}/"
+          
+          # Netlify报告URL（请替换为你的实际Netlify站点URL）
+          # 格式：https://你的站点名称.netlify.app
+          netlify_url = "https://heroic-banoffee-9aac3c.netlify.app"
+          
           # 基于测试用例结果确定状态，而不是工作流状态
           if stats["failed"] > 0 or stats["broken"] > 0:
               status = "failure"
@@ -144,7 +167,10 @@ jobs:
             - 失败: {stats['failed']}
             - 错误: {stats['broken']}
             - 跳过: {stats['skipped']}
-          🌐 在线报告: {report_url}
+          🌐 在线报告:
+            - GitHub Pages: {github_pages_url}
+            - Netlify: {netlify_url}
+          📥 报告下载: https://github.com/{repo}/actions/runs/{run_id}/artifacts
           """
 
           # 发送钉钉消息
